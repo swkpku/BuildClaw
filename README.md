@@ -7,21 +7,44 @@
 
 ---
 
+## Prerequisites
+
+- [Claude Code](https://docs.anthropic.com/en/docs/claude-code) installed and working
+- Python 3.11+
+- A Telegram account (to create a bot via [@BotFather](https://t.me/BotFather))
+- An [Anthropic API key](https://console.anthropic.com)
+
+---
+
 ## Quickstart
 
+**Install via plugin:**
+
 ```bash
-# 1. Install the skills
+/plugin marketplace add swkpku/BuildClaw
+/plugin install buildclaw@buildclaw
+```
+
+**Or manually:**
+
+```bash
 git clone https://github.com/swkpku/BuildClaw.git
 cp -r BuildClaw/skills/build ~/.claude/skills/build
 cp -r BuildClaw/skills/audit ~/.claude/skills/audit
 cp -r BuildClaw/skills/test ~/.claude/skills/test
+```
 
-# 2. Generate your assistant
+**Then generate your assistant:**
+
+```bash
 mkdir my-assistant && cd my-assistant
 claude
 /build
+```
 
-# 3. Configure and run
+Follow the prompts, then:
+
+```bash
 cp .env.example .env   # fill in 3 values
 pip install -r requirements.txt
 python bot.py
