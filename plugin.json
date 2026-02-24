@@ -1,0 +1,10 @@
+{
+  "name": "buildclaw",
+  "description": "Open source ideas for building your own personal AI assistant — you generate the code, you own it, no trust required.",
+  "version": "1.0.0",
+  "author": {
+    "name": "BuildClaw contributors"
+  },
+  "repository": "https://github.com/swkpku/buildclaw",
+  "license": "MIT"
+}

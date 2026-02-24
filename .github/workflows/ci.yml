@@ -1,0 +1,42 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    name: Security tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r examples/telegram/requirements.txt pytest
+
+      - name: Run security test suite
+        working-directory: examples/telegram
+        env:
+          TELEGRAM_TOKEN: test_token_not_real
+          ANTHROPIC_API_KEY: sk-ant-test_not_real
+          ALLOWED_USER_IDS: "123456789"
+        run: pytest test_security.py -v
+
+  links:
+    name: Check markdown links
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check links
+        uses: gaurav-nelson/github-action-markdown-link-check@v1
+        with:
+          use-quiet-mode: "yes"
+          config-file: ".github/mlc_config.json"

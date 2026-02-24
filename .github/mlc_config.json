@@ -1,0 +1,6 @@
+{
+  "ignorePatterns": [
+    { "pattern": "^https://github.com/swkpku" }
+  ],
+  "aliveStatusCodes": [200, 206]
+}
