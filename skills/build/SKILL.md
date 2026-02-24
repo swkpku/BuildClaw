@@ -507,14 +507,21 @@ async def _run_scheduled_task(task: str) -> None:
     await _bot_app.bot.send_message(chat_id=_default_user_id, text=reply[:4000])
 ```
 
-**In `main()`, add these two lines** (after `app = Application.builder()...`):
+**In `main()`, add these lines** (after `app = Application.builder()...`):
 ```python
 global _bot_app
 _bot_app = app
 # Reload saved schedules
 for label, s in _load_schedules().items():
     _register_job(label, s["cron"], s["task"])
-_scheduler.start()
+```
+
+**Add a `post_init` callback** to start the scheduler inside the running event loop:
+```python
+async def _start_scheduler(app):
+    _scheduler.start()
+
+app.post_init = _start_scheduler
 ```
 
 **TOOL_DEFINITIONS entries:**
