@@ -158,6 +158,8 @@ Then add the foundation tail (always included):
 
 ```python
 # ── Anthropic agent loop ───────────────────────────────────────────────────────
+import time
+
 client = anthropic.Anthropic(api_key=ANTHROPIC_API_KEY)
 conversations: dict[int, list] = {}
 
@@ -166,6 +168,23 @@ Your workspace is: {WORKSPACE}
 [Describe selected tool capabilities here based on what was chosen]
 Keep responses concise and under 4000 characters."""
 
+def _call_api(messages, retries=3):
+    """Call Anthropic API with retry on transient errors (overloaded, rate limit)."""
+    for attempt in range(retries):
+        try:
+            return client.messages.create(
+                model=MODEL,
+                max_tokens=4096,
+                system=SYSTEM_PROMPT,
+                tools=TOOL_DEFINITIONS,
+                messages=messages,
+            )
+        except anthropic.APIStatusError as e:
+            if e.status_code in (429, 529) and attempt < retries - 1:
+                time.sleep(2 ** attempt)
+                continue
+            raise
+
 def run_agent(user_id: int, user_message: str) -> str:
     history = conversations.setdefault(user_id, [])
     history.append({"role": "user", "content": user_message})
@@ -173,13 +192,7 @@ def run_agent(user_id: int, user_message: str) -> str:
         conversations[user_id] = history[-20:]
         history = conversations[user_id]
     while True:
-        response = client.messages.create(
-            model=MODEL,
-            max_tokens=4096,
-            system=SYSTEM_PROMPT,
-            tools=TOOL_DEFINITIONS,
-            messages=history,
-        )
+        response = _call_api(history)
         history.append({"role": "assistant", "content": response.content})
         if response.stop_reason == "end_turn":
             return "\n".join(b.text for b in response.content if hasattr(b, "text")) or "(no response)"
