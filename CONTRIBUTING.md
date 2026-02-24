@@ -8,7 +8,7 @@ BuildClaw is open source ideas, not open source code. The contribution unit is a
 
 **Skill improvements** — The skill files in `skills/` are plain markdown prompts. If you find that a generated bot has a security gap, inconsistent behaviour, or missing edge case, the fix is a small edit to the relevant `SKILL.md`. These are the highest-value contributions — you are improving the open source idea.
 
-**New blocks** — A skill that adds a new capability block (a new tool, a new platform channel) following the same pattern: explain the risk, generate the code, audit it. Add it as `skills/upgrade-[name]/SKILL.md`. If it's a new channel (Discord, Slack), also add `examples/[platform]/`.
+**New blocks** — A skill that adds a new capability block (a new tool, a new platform channel) following the same pattern: explain the risk, generate the code, audit it. If it's a new channel (Discord, Slack), also add `examples/[platform]/`.
 
 **Bug fixes in the reference implementation** — `examples/telegram/bot.py` should match what the skill generates. If you find a discrepancy, fix it.
 

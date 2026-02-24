@@ -90,6 +90,6 @@ file. Protect the machine.
 ## Reporting a vulnerability
 
 - **Non-sensitive issues** (e.g. a missing blocked pattern): open a GitHub issue
-- **Sensitive issues** (e.g. a bypass of `is_safe_path`): use [GitHub's private vulnerability reporting](https://github.com/swkpku/buildclaw/security/advisories/new)
+- **Sensitive issues** (e.g. a bypass of `is_safe_path`): use [GitHub's private vulnerability reporting](https://github.com/swkpku/BuildClaw/security/advisories/new)
 
 Please include: what the issue is, which file it affects, and a minimal reproduction if possible.
