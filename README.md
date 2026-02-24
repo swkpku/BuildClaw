@@ -29,9 +29,9 @@
 
 ```bash
 git clone https://github.com/swkpku/BuildClaw.git
-cp -r BuildClaw/skills/build ~/.claude/skills/build
-cp -r BuildClaw/skills/audit ~/.claude/skills/audit
-cp -r BuildClaw/skills/test ~/.claude/skills/test
+cp -r BuildClaw/buildclaw/skills/build ~/.claude/skills/build
+cp -r BuildClaw/buildclaw/skills/audit ~/.claude/skills/audit
+cp -r BuildClaw/buildclaw/skills/test ~/.claude/skills/test
 ```
 
 **Then generate your assistant:**

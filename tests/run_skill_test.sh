@@ -75,9 +75,9 @@ cp "$PROJECT_ROOT/.env" "$WORK_DIR/.env"
 log "Installing skills..."
 TEMP_SKILLS="$WORK_DIR/.claude_skills"
 mkdir -p "$TEMP_SKILLS/build" "$TEMP_SKILLS/audit" "$TEMP_SKILLS/test"
-cp "$PROJECT_ROOT/skills/build/SKILL.md" "$TEMP_SKILLS/build/SKILL.md"
-cp "$PROJECT_ROOT/skills/audit/SKILL.md" "$TEMP_SKILLS/audit/SKILL.md"
-cp "$PROJECT_ROOT/skills/test/SKILL.md"  "$TEMP_SKILLS/test/SKILL.md"
+cp "$PROJECT_ROOT/buildclaw/skills/build/SKILL.md" "$TEMP_SKILLS/build/SKILL.md"
+cp "$PROJECT_ROOT/buildclaw/skills/audit/SKILL.md" "$TEMP_SKILLS/audit/SKILL.md"
+cp "$PROJECT_ROOT/buildclaw/skills/test/SKILL.md"  "$TEMP_SKILLS/test/SKILL.md"
 pass "Skills installed"
 
 # ── Step 3: Generate bot.py via Claude ───────────────────────────────────────
