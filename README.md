@@ -46,6 +46,7 @@ Follow the prompts, then:
 
 ```bash
 cp .env.example .env   # fill in 3 values
+python3 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 python bot.py
 ```
