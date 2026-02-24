@@ -476,7 +476,7 @@ required. Search queries and results are sent to Anthropic's API.
 ```python
 def tool_web_search(query: str, max_results: int = 5) -> str:
     """Search the web via DuckDuckGo. Retries once on failure."""
-    from duckduckgo_search import DDGS
+    from ddgs import DDGS
     for attempt in range(2):
         try:
             with DDGS() as ddgs:
@@ -504,7 +504,7 @@ def tool_web_search(query: str, max_results: int = 5) -> str:
 "web_search": lambda inp: tool_web_search(inp["query"], inp.get("max_results", 5)),
 ```
 
-**requirements.txt:** add `duckduckgo-search>=6.0`
+**requirements.txt:** add `ddgs>=7.0`
 
 ---
 
@@ -655,7 +655,7 @@ selected blocks:
 anthropic>=0.40.0
 python-telegram-bot>=21.0
 python-dotenv>=1.0.0
-# duckduckgo-search>=6.0   (web block)
+# ddgs>=7.0   (web block)
 # apscheduler>=3.10        (scheduler block)
 ```
 
