@@ -13,7 +13,7 @@
       "author": {
         "name": "swkpku"
       },
-      "source": ".",
+      "source": "./plugins/buildclaw",
       "category": "development",
       "homepage": "https://github.com/swkpku/BuildClaw"
     }
