@@ -18,15 +18,15 @@ jobs:
           python-version: "3.11"
 
       - name: Install dependencies
-        run: pip install -r examples/telegram/requirements.txt pytest
+        run: pip install -r examples/telegram/requirements.txt pytest pytest-asyncio
 
-      - name: Run security test suite
+      - name: Run security + e2e tests
         working-directory: examples/telegram
         env:
           TELEGRAM_TOKEN: test_token_not_real
           ANTHROPIC_API_KEY: sk-ant-test_not_real
           ALLOWED_USER_IDS: "123456789"
-        run: pytest test_security.py -v
+        run: pytest test_security.py test_e2e.py -v
 
   links:
     name: Check markdown links
