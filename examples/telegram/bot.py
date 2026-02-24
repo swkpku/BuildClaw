@@ -21,7 +21,15 @@ load_dotenv()
 # ── Configuration ─────────────────────────────────────────────────────────────
 TELEGRAM_TOKEN   = os.environ["TELEGRAM_TOKEN"]
 ANTHROPIC_API_KEY = os.environ["ANTHROPIC_API_KEY"]
-ALLOWED_USER_IDS  = {int(x.strip()) for x in os.environ["ALLOWED_USER_IDS"].split(",")}
+_raw_ids = os.environ["ALLOWED_USER_IDS"].split(",")
+for _id in _raw_ids:
+    if not _id.strip().isdigit():
+        raise SystemExit(
+            f"ALLOWED_USER_IDS must be numeric Telegram user IDs, not usernames.\n"
+            f"  Got: {_id.strip()!r}\n"
+            f"  Fix: message @userinfobot on Telegram to get your numeric ID."
+        )
+ALLOWED_USER_IDS = {int(x.strip()) for x in _raw_ids}
 WORKSPACE         = Path(os.environ.get("WORKSPACE", str(Path.home() / "assistant-workspace")))
 MODEL             = os.environ.get("MODEL", "claude-sonnet-4-6")
 
