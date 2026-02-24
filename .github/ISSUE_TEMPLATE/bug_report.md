@@ -14,7 +14,7 @@ labels: bug
 
 ## Which skill or file is affected
 
-<!-- /build, /audit, /test, or examples/telegram/bot.py -->
+<!-- /buildclaw:build, /buildclaw:audit, /buildclaw:test, or examples/telegram/bot.py -->
 
 ## Steps to reproduce
 

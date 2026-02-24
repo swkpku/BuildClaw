@@ -6,7 +6,7 @@ labels: skill
 
 ## Which skill
 
-<!-- /build, /audit, or /test -->
+<!-- /buildclaw:build, /buildclaw:audit, or /buildclaw:test -->
 
 ## What the skill currently generates
 

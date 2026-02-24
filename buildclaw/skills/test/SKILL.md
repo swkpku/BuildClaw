@@ -23,7 +23,7 @@ Read `bot.py`. Identify:
 3. The exact name of the blocked patterns set (usually `BLOCKED_PATTERNS`)
 
 If `bot.py` does not exist, stop and say:
-"No bot.py found. Run /build first."
+"No bot.py found. Run /buildclaw:build first."
 
 ---
 

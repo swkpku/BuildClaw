@@ -25,21 +25,12 @@
 /plugin install buildclaw@buildclaw
 ```
 
-**Or manually:**
-
-```bash
-git clone https://github.com/swkpku/BuildClaw.git
-cp -r BuildClaw/buildclaw/skills/build ~/.claude/skills/build
-cp -r BuildClaw/buildclaw/skills/audit ~/.claude/skills/audit
-cp -r BuildClaw/buildclaw/skills/test ~/.claude/skills/test
-```
-
 **Then generate your assistant:**
 
 ```bash
 mkdir my-assistant && cd my-assistant
 claude
-/build
+/buildclaw:build
 ```
 
 Follow the prompts, then:
@@ -58,7 +49,7 @@ You watched Claude write every line. You own it.
 ## What it looks like
 
 ```
-$ /build
+$ /buildclaw:build
 
   ┌──────────────────────────────────────────────────────┐
   │  BuildClaw — Your Personal AI Assistant              │
@@ -172,17 +163,17 @@ You pick the tools layer. Everything else is fixed. That is the whole design.
 
 | Command | What it does |
 |---------|--------------|
-| `/build` | The Lego manual — detects current state, shows the full architecture, lets you choose what to build |
-| `/audit` | Audits any `bot.py` against 15 security checks |
-| `/test` | Generates and runs a pytest suite that proves your security invariants hold |
+| `/buildclaw:build` | The Lego manual — detects current state, shows the full architecture, lets you choose what to build |
+| `/buildclaw:audit` | Audits any `bot.py` against 15 security checks |
+| `/buildclaw:test` | Generates and runs a pytest suite that proves your security invariants hold |
 
 **The workflow:**
 
 ```
-/build           first run: choose your blocks, get a working bot
-/build           any time after: see what's built, add a new block
-/audit           verify the security layer any time
-/test            run 41 automated security tests
+/buildclaw:build    first run: choose your blocks, get a working bot
+/buildclaw:build    any time after: see what's built, add a new block
+/buildclaw:audit    verify the security layer any time
+/buildclaw:test     run 41 automated security tests
 ```
 
 ---
@@ -197,7 +188,7 @@ You pick the tools layer. Everything else is fixed. That is the whole design.
 | `memory` | low | Persist facts across restarts in `workspace/memory.json` |
 | `web` | low-medium | Search the web via DuckDuckGo (no API key needed) |
 | `scheduler` | medium | Run tasks autonomously on a schedule |
-| `mcp` | variable | Connect to any MCP server (via `/build` only) |
+| `mcp` | variable | Connect to any MCP server (via `/buildclaw:build` only) |
 
 **Hard-blocked in every generated bot** — no path containing these strings can ever be read, written, or listed:
 
@@ -211,7 +202,7 @@ id_rsa  id_ed25519  private_key  .secret
 
 ## Reference implementation
 
-[`examples/telegram/bot.py`](examples/telegram/bot.py) — 266 lines. This is what your generated bot looks like.
+[`examples/telegram/bot.py`](examples/telegram/bot.py) — 274 lines. This is what your generated bot looks like.
 [`examples/telegram/test_security.py`](examples/telegram/test_security.py) — 41 security tests, all passing.
 
 Read both before running anything.

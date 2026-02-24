@@ -59,14 +59,14 @@ present, [available] for blocks that can be added.
   │  scheduler  run tasks on a schedule     [available]  │
   └──────────────────────────────────────────────────────┘
 
-  Verified by /audit · Tested by /test
+  Verified by /buildclaw:audit · Tested by /buildclaw:test
 ─────────────────────────────────────────────────────────────
 ```
 
 Fill in [BUILT] or [available] based on what you detected in Step 1.
 
 If all available blocks are already BUILT, print:
-"All blocks are built. Run /audit to verify, /test to test."
+"All blocks are built. Run /buildclaw:audit to verify, /buildclaw:test to test."
 Then stop.
 
 ---
@@ -698,7 +698,7 @@ Then print:
         pip install -r requirements.txt
         python bot.py
 
-  Run /audit any time to re-verify security.
-  Run /test to generate and run automated security tests.
+  Run /buildclaw:audit any time to re-verify security.
+  Run /buildclaw:test to generate and run automated security tests.
 ──────────────────────────────────────────────────────────────
 ```

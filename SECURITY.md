@@ -62,7 +62,7 @@ zero data leaving your machine, use a local model (Ollama, LM Studio) instead.
 
 ### The generated code itself
 
-The skill generates code; it does not verify it. Run `/audit` after
+The skill generates code; it does not verify it. Run `/buildclaw:audit` after
 generation and read the output. If anything looks wrong, ask Claude to fix it
 before running the bot.
 
