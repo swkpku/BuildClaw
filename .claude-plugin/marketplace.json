@@ -9,7 +9,10 @@
   "plugins": [
     {
       "name": "buildclaw",
-      "source": ".",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/swkpku/BuildClaw.git"
+      },
       "version": "1.0.0",
       "description": "Skills to build, audit, and test your personal AI assistant — you generate the code, no trust required.",
       "author": {
