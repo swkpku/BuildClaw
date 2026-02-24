@@ -115,7 +115,15 @@ load_dotenv()
 # ── Configuration ─────────────────────────────────────────────────────────────
 TELEGRAM_TOKEN    = os.environ["TELEGRAM_TOKEN"]
 ANTHROPIC_API_KEY = os.environ["ANTHROPIC_API_KEY"]
-ALLOWED_USER_IDS  = {int(x.strip()) for x in os.environ["ALLOWED_USER_IDS"].split(",")}
+_raw_ids = os.environ["ALLOWED_USER_IDS"].split(",")
+for _id in _raw_ids:
+    if not _id.strip().isdigit():
+        raise SystemExit(
+            f"ALLOWED_USER_IDS must be numeric Telegram user IDs, not usernames.\n"
+            f"  Got: {_id.strip()!r}\n"
+            f"  Fix: message @userinfobot on Telegram to get your numeric ID."
+        )
+ALLOWED_USER_IDS  = {int(x.strip()) for x in _raw_ids}
 WORKSPACE         = Path(os.environ.get("WORKSPACE", str(Path.home() / "assistant-workspace")))
 MODEL             = os.environ.get("MODEL", "claude-sonnet-4-6")
 
@@ -549,10 +557,27 @@ app.post_init = _start_scheduler
 
 Generate `.env.example`:
 ```
+# ── Required ──────────────────────────────────────────────────────────────────
+
+# Telegram bot token — get one from @BotFather on Telegram
 TELEGRAM_TOKEN=your_telegram_bot_token_here
+
+# Anthropic API key — https://console.anthropic.com
 ANTHROPIC_API_KEY=sk-ant-...
-ALLOWED_USER_IDS=your_telegram_user_id_here
+
+# Your numeric Telegram user ID (NOT your username)
+# Get it: message @userinfobot on Telegram → it replies with a number
+# Multiple users: comma-separated  e.g.  123456789,987654321
+ALLOWED_USER_IDS=123456789
+
+# ── Optional ──────────────────────────────────────────────────────────────────
+
+# Directory the assistant can read and write (created automatically if missing)
+# Default: ~/assistant-workspace
 # WORKSPACE=/Users/yourname/assistant-workspace
+
+# Claude model to use
+# Default: claude-sonnet-4-6
 # MODEL=claude-sonnet-4-6
 ```
 
@@ -601,6 +626,7 @@ Then print:
   bot.py built. You read every line above.
 
   Next: cp .env.example .env  (fill in 3 values)
+        python3 -m venv .venv && source .venv/bin/activate
         pip install -r requirements.txt
         python bot.py
 
